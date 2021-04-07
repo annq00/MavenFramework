@@ -1,16 +1,17 @@
 import com.relevantcodes.extentreports.LogStatus;
+import extentreport.BaseTest;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
 
 import java.lang.reflect.Method;
 
-public class TC02 extends BaseTest{
+public class TC02 extends BaseTest {
 
     @Test
     public void TC02 (Method method){
 
-        extentTest = extentreports.ExtentTestManager.startTest(method.getName(), "TC02");
+        extentTest = extentreport.ExtentTestManager.startTest(method.getName(), "TC02");
 
         System.out.println("TC02: User can't login with invalid password");
 

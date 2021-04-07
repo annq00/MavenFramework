@@ -1,9 +1,9 @@
+package extentreport;
+
 import com.relevantcodes.extentreports.ExtentTest;
 
 import drivermanagers.DriverManager;
 import drivermanagers.DriverManagerFactory;
-import extentreport.ExtentManager;
-import extentreports.ExtentTestManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 

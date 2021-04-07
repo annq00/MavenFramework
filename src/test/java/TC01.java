@@ -1,5 +1,6 @@
 
 import com.relevantcodes.extentreports.LogStatus;
+import extentreport.BaseTest;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
@@ -11,7 +12,7 @@ public class TC01 extends BaseTest {
     @Test
     public void TC01(Method method){
 
-        extentTest = extentreports.ExtentTestManager.startTest(method.getName(), "TC01");
+        extentTest = extentreport.ExtentTestManager.startTest(method.getName(), "TC01");
 
         extentTest.log(LogStatus.INFO,"Step 1","Open the Home Page");
         HomePage homePage = new HomePage(driver).open();

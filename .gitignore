@@ -2,6 +2,7 @@
 /shelf/
 /workspace.xml
 /.idea
-
+/MavenFramework.iml
+/reports
 # Project exclude paths
 /target/
