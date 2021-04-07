@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" thread-count="2" parallel="classes">
+    <listeners>
+        <listener class-name="extentreport.TestListener"/>
+    </listeners>
+    <test name="RailWay">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="TC01"/>
+            <class name="TC02"/>
+        </classes>
+    </test>
+</suite>
