@@ -4,7 +4,7 @@ package drivermanagers;
 import org.openqa.selenium.WebDriver;
 
 public abstract class DriverManager {
-    protected WebDriver driver;
+    protected static WebDriver driver;
     protected abstract void createWebDriver();
 
     public void quitWebDriver(){
@@ -18,6 +18,10 @@ public abstract class DriverManager {
         if(driver==null){
             createWebDriver();
         }
+        return driver;
+    }
+
+    public static WebDriver initWebDriver(){
         return driver;
     }
 }

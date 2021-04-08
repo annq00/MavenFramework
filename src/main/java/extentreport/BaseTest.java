@@ -18,13 +18,13 @@ public class BaseTest {
         driverManager = DriverManagerFactory.getDriverManager(browser);
         driver = driverManager.getWebDriver();
         driver.manage().window().maximize();
+
     }
     @AfterClass
     public void afterClass(){
 
         System.out.print("After Class");
-        driverManager.quitWebDriver();
-
+        driver.quit();
         ExtentTestManager.endTest();
         ExtentManager.getReporter().flush();
     }

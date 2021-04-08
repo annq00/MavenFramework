@@ -30,4 +30,8 @@ public class GeneralPage {
         return new LoginPage(driver);
     }
 
+    public boolean isTabLogoutExist (WebDriver driver){
+        return driver.findElements(tabLogout).size() > 0;
+    }
+
 }

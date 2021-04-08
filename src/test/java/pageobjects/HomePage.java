@@ -22,4 +22,10 @@ public class HomePage extends GeneralPage{
         Assert.assertEquals(actualMsg,expectedMsg,"Welcome message is not displayed as expected!");
 
     }
+
+    public void checkLogoutTabExist(){
+        HomePage homePage = new HomePage(driver);
+        Boolean observed  = homePage.isTabLogoutExist(driver);
+        Assert.assertEquals(observed, java.util.Optional.of(true),"User is not logged in");
+    }
 }

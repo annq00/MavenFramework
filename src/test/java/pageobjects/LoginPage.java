@@ -46,7 +46,6 @@ public class LoginPage extends GeneralPage {
         this.getTxtUserName(driver).sendKeys(Constant.username);
         this.getTxtPassword(driver).sendKeys("12345678");
         this.getBtnLogin(driver).click();
-
         return new HomePage(driver);
     }
 
