@@ -1,7 +1,6 @@
 package extentreport;
 
-
-
+import org.apache.commons.io.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
@@ -11,7 +10,6 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Base64;
 
 
@@ -24,7 +22,7 @@ public class TestListener extends BaseTest implements ITestListener {
     @Override
     public void onStart(ITestContext iTestContext) {
         System.out.println("I am in onStart method " + iTestContext.getName());
-//        iTestContext.setAttribute("WebDriver", driver);
+//   iTestContext.setAttribute("WebDriver", driver);
     }
 
     @Override
@@ -53,10 +51,10 @@ public class TestListener extends BaseTest implements ITestListener {
         System.out.println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
         ExtentTestManager.addIntoExtentReport(iTestResult, LogStatus.FAIL);
 
-        File src = ((TakesScreenshot) driverManager.getWebDriver()).getScreenshotAs(OutputType.FILE);
+        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         byte[] fileContent = new byte[0];
         try {
-            fileContent = Files.readAllBytes(src.toPath());
+            fileContent = FileUtils.readFileToByteArray(src);
         } catch (IOException e) {
             e.printStackTrace();
         }

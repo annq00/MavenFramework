@@ -41,7 +41,7 @@ public class ExtentTestManager {
         String exceptionMessage = "";
         if (status != LogStatus.PASS && result.getThrowable() != null) {
             for (StackTraceElement e : result.getThrowable().getStackTrace()) {
-                if (e.toString().contains("Selenium2")) {
+                if (e.toString().contains("TC")) {
                     stackTrace = stackTrace + e.toString() + "</br>";
                 }
             }
