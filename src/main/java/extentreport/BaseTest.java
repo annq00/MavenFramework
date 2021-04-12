@@ -9,7 +9,7 @@ import org.testng.annotations.*;
 public class BaseTest {
     public DriverManager driverManager;
     public WebDriver driver;
-    public ExtentTest extentTest;
+
 
     @Parameters({"browser"})
     @BeforeClass
@@ -18,7 +18,6 @@ public class BaseTest {
         driverManager = DriverManagerFactory.getDriverManager(browser);
         driver = driverManager.getWebDriver();
         driver.manage().window().maximize();
-
     }
     @AfterClass
     public void afterClass(){

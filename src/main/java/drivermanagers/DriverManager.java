@@ -4,24 +4,20 @@ package drivermanagers;
 import org.openqa.selenium.WebDriver;
 
 public abstract class DriverManager {
-    protected static WebDriver driver;
+    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected abstract void createWebDriver();
 
     public void quitWebDriver(){
         if(driver!=null){
-            driver.quit();
+            driver.get().quit();
             driver = null;
         }
     }
 
     public WebDriver getWebDriver(){
-        if(driver==null){
-            createWebDriver();
-        }
-        return driver;
+        createWebDriver();
+        return driver.get();
     }
 
-    public static WebDriver initWebDriver(){
-        return driver;
-    }
+
 }

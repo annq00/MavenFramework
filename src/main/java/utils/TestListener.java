@@ -1,6 +1,8 @@
-package extentreport;
+package utils;
 
 import drivermanagers.DriverManager;
+import extentreport.ExtentManager;
+import extentreport.ExtentTestManager;
 import org.apache.commons.io.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -47,7 +49,7 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         System.out.println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
         ExtentTestManager.addIntoExtentReport(iTestResult, LogStatus.FAIL);
-        File src = ((TakesScreenshot) DriverManager.initWebDriver()).getScreenshotAs(OutputType.FILE);
+        File src = ((TakesScreenshot) DriverManager.driver.get()).getScreenshotAs(OutputType.FILE);
         byte[] fileContent = new byte[0];
         try {
             fileContent = FileUtils.readFileToByteArray(src);
@@ -56,7 +58,7 @@ public class TestListener implements ITestListener {
         }
         String base64StringofScreenshot = "data:image/png;base64,"+ Base64.getEncoder().encodeToString(fileContent);
 
-        ExtentTestManager.getTest().log(LogStatus.FAIL, "Screenshot pic: "+ src.getName() +"<img src='"+ base64StringofScreenshot +"' style='width: 100%; height: 70%;' >");
+        ExtentTestManager.getTest().log(LogStatus.FAIL, "<img src='"+ base64StringofScreenshot +"' style='width: 100%; height: 70%;' >");
 
     }
 

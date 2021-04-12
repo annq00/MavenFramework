@@ -1,4 +1,6 @@
+import com.relevantcodes.extentreports.LogStatus;
 import extentreport.BaseTest;
+import extentreport.ExtentManager;
 import extentreport.ExtentTestManager;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
@@ -12,10 +14,10 @@ public class TC01 extends BaseTest {
         System.out.println("TC01: User can login with valid credential");
 
         System.out.println("Step 1: Navigate to Railway's HomePage");
-        HomePage homePage = new HomePage(driver).open();
+        HomePage homePage = new HomePage().open();
 
         System.out.println("Step 2: Go to the Login Page");
-        LoginPage loginPage = homePage.gotoLoginPage(driver);
+        LoginPage loginPage = homePage.gotoLoginPage();
 
         System.out.println("Step 3: Log in with a valid account");
         HomePage loggedInHomePage = loginPage.loginWithValidAccount();

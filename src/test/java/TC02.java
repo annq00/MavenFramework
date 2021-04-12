@@ -13,10 +13,10 @@ public class TC02 extends BaseTest {
         System.out.println("TC02: User can't login with invalid password");
 
         System.out.println("Step 1: Navigate to Railway's HomePage");
-        HomePage homepage = new HomePage(driver).open();
+        HomePage homepage = new HomePage().open();
 
         System.out.println("Step 2: Go to Login Page");
-        LoginPage loginpage = homepage.gotoLoginPage(driver);
+        LoginPage loginpage = homepage.gotoLoginPage();
 
         System.out.println("Step 3: Login with invalid password");
         loginpage.loginWithInvalidPassword();

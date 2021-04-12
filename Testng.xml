@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" thread-count="2" parallel="classes">
     <listeners>
-        <listener class-name="extentreport.TestListener"/>
+        <listener class-name="utils.TestListener"/>
     </listeners>
     <test name="RailWay">
         <parameter name="browser" value="edge"/>

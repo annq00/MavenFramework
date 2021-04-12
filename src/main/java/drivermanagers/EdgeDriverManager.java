@@ -7,6 +7,7 @@ public class EdgeDriverManager extends DriverManager {
 
     @Override
     public void createWebDriver(){
-        this.driver = new EdgeDriver();
+
+        DriverManager.driver.set(new EdgeDriver());
     }
 }
