@@ -1,10 +1,9 @@
-import com.relevantcodes.extentreports.LogStatus;
+
 import extentreport.BaseTest;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
 
-import java.lang.reflect.Method;
 
 public class TC02 extends BaseTest {
 

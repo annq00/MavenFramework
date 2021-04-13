@@ -3,6 +3,6 @@
 /workspace.xml
 /.idea
 /MavenFramework.iml
-/reports
+/TestReport
 # Project exclude paths
 /target/

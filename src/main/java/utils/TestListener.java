@@ -1,75 +1,68 @@
 package utils;
 
+import com.aventstack.extentreports.Status;
+import constant.Constant;
 import drivermanagers.DriverManager;
 import extentreport.ExtentManager;
 import extentreport.ExtentTestManager;
-import org.apache.commons.io.*;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import com.relevantcodes.extentreports.LogStatus;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Base64;
-
+import java.util.UUID;
 
 public class TestListener implements ITestListener {
+    private final Logger logger = Logger.getLogger(this.getClass());
 
-    private static String getTestMethodName(ITestResult iTestResult) {
-        return iTestResult.getMethod().getConstructorOrMethod().getName();
+    @Override
+    public void onTestStart(ITestResult result) {
+        logger.debug(("*** Running test method " + result.getMethod().getMethodName() + "..."));
+        ExtentTestManager.startTest(result.getMethod().getMethodName());
     }
 
     @Override
-    public void onStart(ITestContext iTestContext) {
-        System.out.println("I am in onStart method " + iTestContext.getName());
+    public void onTestSuccess(ITestResult result) {
+        ExtentTestManager.getTest().pass(result.getName());
+        logger.debug("*** Executed " + result.getMethod().getMethodName() + " test successfully...");
     }
 
     @Override
-    public void onFinish(ITestContext iTestContext) {
-        System.out.println("I am in onFinish method " + iTestContext.getName());
-        ExtentTestManager.endTest();
-        ExtentManager.getReporter().flush();
-    }
-
-    @Override
-    public void onTestStart(ITestResult iTestResult) {
-        System.out.println("I am in onTestStart method " + getTestMethodName(iTestResult) + " start");
-    }
-
-    @Override
-    public void onTestSuccess(ITestResult iTestResult) {
-        System.out.println("I am in onTestSuccess method " + getTestMethodName(iTestResult) + " succeed");
-        ExtentTestManager.addIntoExtentReport(iTestResult,LogStatus.PASS);
-    }
-
-    @Override
-    public void onTestFailure(ITestResult iTestResult) {
-        System.out.println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
-        ExtentTestManager.addIntoExtentReport(iTestResult, LogStatus.FAIL);
-        File src = ((TakesScreenshot) DriverManager.driver.get()).getScreenshotAs(OutputType.FILE);
-        byte[] fileContent = new byte[0];
+    public void onTestFailure(ITestResult result) {
+        String fileName = Constant.generateTimeStampString() + ".png";
+        logger.info(DriverManager.captureScreenshot(fileName, ExtentManager.getReportPath()));
         try {
-            fileContent = FileUtils.readFileToByteArray(src);
+            ExtentTestManager.getTest().fail(result.getThrowable());
+            ExtentTestManager.getTest().addScreenCaptureFromPath(fileName, "Failure Screenshot");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
-        String base64StringofScreenshot = "data:image/png;base64,"+ Base64.getEncoder().encodeToString(fileContent);
+    }
 
-        ExtentTestManager.getTest().log(LogStatus.FAIL, "<img src='"+ base64StringofScreenshot +"' style='width: 100%; height: 70%;' >");
+    @Override
+    public void onTestSkipped(ITestResult result) {
+        logger.debug("*** Test " + result.getMethod().getMethodName() + " skipped...");
+        ExtentTestManager.getTest().log(Status.SKIP, "Test Skipped");
 
     }
 
     @Override
-    public void onTestSkipped(ITestResult iTestResult) {
-        System.out.println("I am in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
-        ExtentTestManager.getTest().log(LogStatus.SKIP, "Test Skipped");
+    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+        // TODO Auto-generated method stub
+
     }
 
     @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-        System.out.println("Test failed but it is in defined success ratio " + getTestMethodName(iTestResult));
+    public void onStart(ITestContext context) {
+        logger.debug("*** Test Suite " + context.getName() + " started ***");
     }
+
+    @Override
+    public void onFinish(ITestContext context) {
+        logger.debug(("*** Test Suite " + context.getName() + " ending ***"));
+        ExtentTestManager.endTest();
+        ExtentManager.getInstance().flush();
+    }
+
 }

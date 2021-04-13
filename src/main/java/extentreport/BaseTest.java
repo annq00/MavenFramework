@@ -1,6 +1,5 @@
 package extentreport;
 
-import com.relevantcodes.extentreports.ExtentTest;
 import drivermanagers.DriverManager;
 import drivermanagers.DriverManagerFactory;
 import org.openqa.selenium.WebDriver;
@@ -21,10 +20,9 @@ public class BaseTest {
     }
     @AfterClass
     public void afterClass(){
-
         System.out.print("After Class");
         driver.quit();
         ExtentTestManager.endTest();
-        ExtentManager.getReporter().flush();
+        ExtentManager.getInstance().flush();
     }
 }
