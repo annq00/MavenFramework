@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
 
-public class Login_01 extends BaseTest {
+public class  Login_01 extends BaseTest {
     @Test
     public void User_can_open_the_Login_page(){
         Reporter.log("Step 1: Navigate to Railway's HomePage");

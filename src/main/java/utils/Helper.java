@@ -3,11 +3,15 @@ package utils;
 import drivermanagers.DriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class Helper {
@@ -41,4 +45,32 @@ public class Helper {
         JavascriptExecutor je = (JavascriptExecutor) DriverManager.driver.get();
         je.executeScript("arguments[0].scrollIntoView(true);",element);
     }
+
+    public static void select(WebElement element, int index){
+        Select select = new Select(element);
+        select.selectByIndex(index);
+    }
+
+    public static String selectCurrentOption(WebElement element){
+        Select sl = new Select(element);
+        String currentOpt = sl.getFirstSelectedOption().getText();
+        return currentOpt;
+    }
+
+    public static int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
+    public static int getCbbSize(WebElement combobox){
+        Select sl = new Select(combobox);
+        List<WebElement> list = sl.getOptions();
+        return list.size();
+    }
+
+    public static void waitFor(WebElement element){
+        WebDriverWait wait = new WebDriverWait(DriverManager.driver.get(), 3);
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+
 }

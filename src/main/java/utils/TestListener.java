@@ -1,7 +1,6 @@
 package utils;
 
 import com.aventstack.extentreports.Status;
-import constant.Constant;
 import drivermanagers.DriverManager;
 import extentreport.ExtentManager;
 import extentreport.ExtentTestManager;
@@ -9,9 +8,8 @@ import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 import java.io.IOException;
-import java.util.UUID;
+
 
 public class TestListener implements ITestListener {
     private final Logger logger = Logger.getLogger(this.getClass());

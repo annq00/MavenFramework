@@ -2,7 +2,6 @@ package pageobjects;
 
 import drivermanagers.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class GeneralPage {
@@ -12,13 +11,14 @@ public class GeneralPage {
     private final By lblWelcomeMsg = By.xpath("//*[@id='banner']/div/strong");
     private final By tabRegister = By.xpath("//*[@id='menu']//span[contains(text(),'Register')]");
     private final By tabBookTicket = By.xpath("//*[@id='menu']//span[contains(text(),'Book ticket')]");
+    private final By tabMyTicket = By.xpath("//*[@id='menu']//span[contains(text(),'My ticket')]");
     private final By txtPageHeader = By.xpath("//*[@id='content']/h1");
 
     protected WebElement getTabLogin() {
         return DriverManager.driver.get().findElement(tabLogin);
     }
-    protected WebElement getTabLogout(WebDriver driver) {
-        return driver.findElement(tabLogout);
+    protected WebElement getTabLogout() {
+        return DriverManager.driver.get().findElement(tabLogout);
     }
     protected WebElement getLblWelcomeMsg() {
         return DriverManager.driver.get().findElement(lblWelcomeMsg);
@@ -28,6 +28,9 @@ public class GeneralPage {
     }
     protected WebElement getTabBookTicket() {
         return DriverManager.driver.get().findElement(tabBookTicket);
+    }
+    protected WebElement getTabMyTicket() {
+        return DriverManager.driver.get().findElement(tabMyTicket);
     }
     protected WebElement getTxtPageHeader(){
         return DriverManager.driver.get().findElement(txtPageHeader);
@@ -55,5 +58,13 @@ public class GeneralPage {
         return new RegisterPage();
     }
 
+    public BookTicketPage gotoBookTicketPage(){
+        this.getTabBookTicket().click();
+        return new BookTicketPage();
+    }
 
+    public MyTicketPage gotoMyTicketPage(){
+        this.getTabMyTicket().click();
+        return new MyTicketPage();
+    }
 }
