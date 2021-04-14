@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" thread-count="2" parallel="classes">
+<suite name="All Test Suite" thread-count="4" parallel="classes">
     <listeners>
         <listener class-name="utils.TestListener"/>
     </listeners>
     <test name="RailWay">
         <parameter name="browser" value="edge"/>
         <classes>
-            <class name="TC01"/>
+            <class name="Reg_01"/>
+            <class name="Reg_02"/>
+            <class name="Login_01"/>
+            <class name="Login_02"/>
+<!--            <class name="TC01"/>-->
 <!--            <class name="TC02"/>-->
         </classes>
     </test>

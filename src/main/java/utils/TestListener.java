@@ -30,7 +30,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        String fileName = Constant.generateTimeStampString() + ".png";
+        String fileName = Helper.generateTimeStampString() + ".png";
         logger.info(DriverManager.captureScreenshot(fileName, ExtentManager.getReportPath()));
         try {
             ExtentTestManager.getTest().fail(result.getThrowable());

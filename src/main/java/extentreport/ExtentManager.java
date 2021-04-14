@@ -7,13 +7,14 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import constant.Constant;
 import org.apache.commons.codec.CharEncoding;
 import org.apache.log4j.Logger;
+import utils.Helper;
 
 import java.io.File;
 
 
 public class ExtentManager {
     private static ExtentReports extent;
-    private static final String reportFileName = "Test-Automaton-Report"+ Constant.generateTimeStampString()+".html";
+    private static final String reportFileName = "Test-Automaton-Report-"+ Helper.generateTimeStampString()+".html";
     private static final String reportDir = "TestReport";
     private static final String reportFilepath = Constant.USER_DIR + Constant.FileSeparator + reportDir;
     private static final String reportFileLocation = reportFilepath + Constant.FileSeparator + reportFileName;
