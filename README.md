@@ -8,7 +8,9 @@ https://www.baeldung.com/install-maven-on-windows-linux-mac
 
 Open your IDE command line or window command line > Navigate to the project directory > Execute "mvn test"
 
-Right click the Testng.xml file > Click "Run"
+Run the Testng.xml file using Shift+F10
+
+Modify Tesng.xml file for parallel options
 
 The framework only supports chrome and edge browser for now
 
