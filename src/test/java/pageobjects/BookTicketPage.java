@@ -36,7 +36,7 @@ public class BookTicketPage extends GeneralPage {
     }
 
     //example of using wrapper getWebElement()
-    protected WebElement cbbDepartDate1 = Helper.getWebElement("a");
+//    protected WebElement cbbDepartDate1 = Helper.getWebElement("a");
 
 
     public SuccessPage clickBookTicketBtn(){

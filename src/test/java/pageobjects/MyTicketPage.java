@@ -4,6 +4,7 @@ import drivermanagers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import utils.Helper;
 
 public class MyTicketPage extends GeneralPage{
     private final By txtNo = By.xpath("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'No.')]//preceding-sibling::th)+1]");
@@ -52,7 +53,7 @@ public class MyTicketPage extends GeneralPage{
         while (6 - numberOfRemainTickets > 0)
         {
             BookTicketPage bookTicketPage = page.gotoBookTicketPage();
-            bookTicketPage.enterBookingInfo();
+            bookTicketPage.enterBookingInfoWith1Ticket();
             bookTicketPage.clickBookTicketBtn();
             numberOfRemainTickets++;
         }
@@ -71,5 +72,27 @@ public class MyTicketPage extends GeneralPage{
         String remainAmount = String.valueOf(10 - Integer.parseInt(bookedAmount));
         String expected = String.format("You currently book %s tickets, you can book %s more.",bookedAmount,remainAmount) ;
         Assert.assertEquals(observed,expected,"Message mismatch");
+    }
+
+    public void checkOldTickets(){
+        MyTicketPage myTicketPage = new MyTicketPage();
+        String expected = myTicketPage.getTxtDepartStation().getText()
+                +myTicketPage.getTxtArriveStation().getText()
+                +myTicketPage.getTxtSeatType().getText()
+                +myTicketPage.getTxtDepartDate().getText()
+                +myTicketPage.getTxtTicketAmount().getText();
+
+        BookTicketPage bookTicketPage = myTicketPage.gotoBookTicketPage();
+        bookTicketPage.enterBookingInfoWith1Ticket();
+        SuccessPage successPage = bookTicketPage.clickBookTicketBtn();
+        successPage.gotoMyTicketPage();
+        String observed = Helper.getWebElement("//table/tbody//tr[3]/td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Depart Station')]//preceding-sibling::th)+1]").getText()
+                + Helper.getWebElement("//table/tbody//tr[3]/td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Arrive Station')]//preceding-sibling::th)+1]").getText()
+                + Helper.getWebElement("//table/tbody//tr[3]/td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Seat Type')]//preceding-sibling::th)+1]").getText()
+                + Helper.getWebElement("//table/tbody//tr[3]/td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Depart Date')]//preceding-sibling::th)+1]").getText()
+                + Helper.getWebElement("//table/tbody//tr[3]/td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Amount')]//preceding-sibling::th)+1]").getText();
+
+        myTicketPage.cancelAllTickets();
+        Assert.assertEquals(expected,observed,"Old ticket does not display as expected");
     }
 }

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Constant {
-    public static String username = "test+1@gmail.com";
+    public static String username = "test+2@gmail.com";
     public static String password = "12345678";
     public static final String FileSeparator = System.getProperty("file.separator");
     public static final String USER_DIR = System.getProperty("user.dir");

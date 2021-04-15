@@ -12,7 +12,8 @@
 <!--            <class name="Login_01"/>-->
 <!--            <class name="Login_02"/>-->
 <!--            <class name="BookTicket_01"/>-->
-            <class name="MyTicket_01"/>
+<!--            <class name="MyTicket_01"/>-->
+            <class name="MyTicket_02"/>
         </classes>
     </test>
 </suite>
