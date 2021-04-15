@@ -21,9 +21,9 @@ public class BookTicket_01 extends BaseTest {
 
         Reporter.log("Step 3: Book tickets");
         System.out.println("Step 3: Book tickets");
-        bookTicketPage.enterBookingInfo();
+        bookTicketPage.enterBookingInfoWith1Ticket();
         String expected = bookTicketPage.getBookingInfo();
-        SuccessPage successPage = bookTicketPage.bookTicket();
+        SuccessPage successPage = bookTicketPage.clickBookTicketBtn();
 
         Reporter.log("Step 4: Observe information in the 'Ticket booked successfully!' page");
         System.out.println("Step 4: Observe information in the 'Ticket booked successfully!' page");

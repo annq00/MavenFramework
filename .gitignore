@@ -4,7 +4,5 @@
 /.idea
 /MavenFramework.iml
 /TestReport
-/TC01
-/TC02
 # Project exclude paths
 /target/

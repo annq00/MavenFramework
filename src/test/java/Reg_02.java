@@ -18,7 +18,7 @@ public class Reg_02 extends BaseTest {
 
         Reporter.log("Step 3: Create an account with registered email");
         System.out.println("Step 3: Create an account with registered email");
-        registerPage.CreateAccountWithUsedEmail();
+        registerPage.createAccountWithUsedEmail();
 
         Reporter.log("Step 4: Check the error message");
         System.out.println("Step 4: Check the error message");

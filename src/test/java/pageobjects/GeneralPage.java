@@ -3,6 +3,7 @@ package pageobjects;
 import drivermanagers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utils.Helper;
 
 public class GeneralPage {
 
@@ -36,6 +37,8 @@ public class GeneralPage {
         return DriverManager.driver.get().findElement(txtPageHeader);
     }
 
+
+
     public String getWelcomeMsg() {
         return this.getLblWelcomeMsg().getText();
     }
@@ -66,5 +69,23 @@ public class GeneralPage {
     public MyTicketPage gotoMyTicketPage(){
         this.getTabMyTicket().click();
         return new MyTicketPage();
+    }
+
+    public void loginWithNewCreatedAccount(){
+        String newEmail = Helper.generateRandomString(6)+"@gmail.com";
+        String newPassword = Helper.generateRandomString(8);
+        String newPid = Helper.generateRandomString(10);
+        HomePage homePage = new HomePage();
+        RegisterPage registerPage = homePage.gotoRegisterPage();
+        registerPage.getTbxEmail().sendKeys(newEmail);
+        registerPage.getTbxPassword().sendKeys(newPassword);
+        registerPage.getTbxConfirmPassword().sendKeys(newPassword);
+        registerPage.getTbxPid().sendKeys(newPid);
+        Helper.scrollToElement(registerPage.getBtnRegister());
+        registerPage.getBtnRegister().click();
+        LoginPage loginPage = registerPage.gotoLoginPage();
+        loginPage.getTbxUserName().sendKeys(newEmail);
+        loginPage.getTbxPassword().sendKeys(newPassword);
+        loginPage.getBtnLogin().click();
     }
 }

@@ -35,13 +35,25 @@ public class BookTicketPage extends GeneralPage {
         return DriverManager.driver.get().findElement(btnBookTicket);
     }
 
-    public SuccessPage bookTicket(){
+    //example of using wrapper getWebElement()
+    protected WebElement cbbDepartDate1 = Helper.getWebElement("a");
+
+
+    public SuccessPage clickBookTicketBtn(){
         Helper.scrollToElement(getBtnBookTicket());
         this.getBtnBookTicket().click();
         return new SuccessPage();
     }
 
     public void enterBookingInfo(){
+        Helper.select(getCbbDepartDate(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartDate())));
+        Helper.select(getCbbDepartFrom(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartFrom())));
+        Helper.select(getCbbArriveAt(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbArriveAt())));
+        Helper.select(getCbbSeatType(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbSeatType())));
+        Helper.select(getCbbTicketAmount(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbTicketAmount())));
+    }
+
+    public void enterBookingInfoWith1Ticket(){
         Helper.select(getCbbDepartDate(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartDate())));
         Helper.select(getCbbDepartFrom(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartFrom())));
         Helper.select(getCbbArriveAt(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbArriveAt())));

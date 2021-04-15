@@ -20,7 +20,7 @@ public class RegisterPage extends GeneralPage {
     protected WebElement getTbxEmail(){
         return DriverManager.driver.get().findElement(tbxEmail);
     }
-    protected WebElement getTxtPassword(){
+    protected WebElement getTbxPassword(){
         return DriverManager.driver.get().findElement(tbxPassword);
     }
     protected WebElement getTbxConfirmPassword(){
@@ -41,10 +41,10 @@ public class RegisterPage extends GeneralPage {
         Assert.assertEquals(pageHeader, Constant.RegisterPageHeader,"RegisterPage does not display as expected");
     }
 
-    public void CreateAccountWithUsedEmail(){
+    public void createAccountWithUsedEmail(){
         this.getTbxEmail().sendKeys(Constant.username);
         String password = Helper.generateRandomString(8);
-        this.getTxtPassword().sendKeys(password);
+        this.getTbxPassword().sendKeys(password);
         this.getTbxConfirmPassword().sendKeys(password);
         this.getTbxPid().sendKeys(Helper.generateRandomString(8));
         Helper.scrollToElement(getBtnRegister());
@@ -55,4 +55,6 @@ public class RegisterPage extends GeneralPage {
         String observedErrorMsg = this.getTxtGeneralErrorMsg().getText();
         Assert.assertEquals(observedErrorMsg,actualErrorMsg,"Error message does not display as expected");
     }
+
+
 }

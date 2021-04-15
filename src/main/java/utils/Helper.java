@@ -1,8 +1,7 @@
 package utils;
 
 import drivermanagers.DriverManager;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -51,8 +50,8 @@ public class Helper {
         select.selectByIndex(index);
     }
 
-    public static String selectCurrentOption(WebElement element){
-        Select sl = new Select(element);
+    public static String selectCurrentOption(WebElement dropdown){
+        Select sl = new Select(dropdown);
         String currentOpt = sl.getFirstSelectedOption().getText();
         return currentOpt;
     }
@@ -61,8 +60,8 @@ public class Helper {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-    public static int getCbbSize(WebElement combobox){
-        Select sl = new Select(combobox);
+    public static int getCbbSize(WebElement dropdown){
+        Select sl = new Select(dropdown);
         List<WebElement> list = sl.getOptions();
         return list.size();
     }
@@ -72,5 +71,31 @@ public class Helper {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static WebElement getWebElement(String locator){
+        char temp = locator.charAt(0);
+        By locatorBy = null;
+        switch (temp){
+            case '/':
+                locatorBy = By.xpath(locator);
+                break;
+            case '.':
+                locatorBy = By.cssSelector(locator);
+                break;
+            case 'i':
+                locatorBy = By.id(locator.substring(2));
+                break;
+            case 'c':
+                locatorBy = By.className(locator.substring(2));
+                break;
+            case 'n':
+                locatorBy = By.name(locator.substring(2));
+                break;
+            case 't':
+                locatorBy = By.tagName(locator.substring(2));
+                break;
+        }
+
+        return DriverManager.driver.get().findElement(locatorBy);
+    }
 
 }

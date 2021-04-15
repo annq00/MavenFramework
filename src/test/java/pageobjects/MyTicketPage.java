@@ -3,6 +3,7 @@ package pageobjects;
 import drivermanagers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class MyTicketPage extends GeneralPage{
     private final By txtNo = By.xpath("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'No.')]//preceding-sibling::th)+1]");
@@ -12,7 +13,7 @@ public class MyTicketPage extends GeneralPage{
     private final By txtDepartDate = By.xpath("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Depart Date')]//preceding-sibling::th)+1]");
     private final By txtTicketAmount = By.xpath("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Amount')]//preceding-sibling::th)+1]");
     private final By btnCancelTicket = By.xpath("//table/tbody/tr[2]/td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Operation')]//preceding-sibling::th)+1]/input");
-    private final By txtNoteMsg = By.xpath("//*[@id='content']//li[contains(text(),'book')]/text()");
+    private final By txtNoteMsg = By.xpath("//*[@id='content']//li[contains(text(),'book')]");
 
     protected WebElement getTxtNo(){
         return DriverManager.driver.get().findElement(txtNo);
@@ -38,6 +39,7 @@ public class MyTicketPage extends GeneralPage{
     protected WebElement getTxtNoteMsg(){
         return DriverManager.driver.get().findElement(txtNoteMsg);
     }
+
     public void cancelAllTickets(){
         MyTicketPage page = new MyTicketPage();
         SuccessPage successPage = new SuccessPage();
@@ -51,7 +53,7 @@ public class MyTicketPage extends GeneralPage{
         {
             BookTicketPage bookTicketPage = page.gotoBookTicketPage();
             bookTicketPage.enterBookingInfo();
-            bookTicketPage.bookTicket();
+            bookTicketPage.clickBookTicketBtn();
             numberOfRemainTickets++;
         }
         successPage.gotoMyTicketPage();
@@ -61,5 +63,13 @@ public class MyTicketPage extends GeneralPage{
             DriverManager.driver.get().switchTo().alert().accept();
             numberOfCurrentTickets--;
         }
+    }
+
+    public void compareTicketInMsgAndNote(){
+        String observed = this.getTxtNoteMsg().getText();
+        String bookedAmount = this.getTxtTicketAmount().getText();
+        String remainAmount = String.valueOf(10 - Integer.parseInt(bookedAmount));
+        String expected = String.format("You currently book %s tickets, you can book %s more.",bookedAmount,remainAmount) ;
+        Assert.assertEquals(observed,expected,"Message mismatch");
     }
 }
