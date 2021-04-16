@@ -69,7 +69,13 @@ public class MyTicketPage extends GeneralPage{
     public void compareTicketInMsgAndNote(){
         String observed = this.getTxtNoteMsg().getText();
         String bookedAmount = this.getTxtTicketAmount().getText();
-        String remainAmount = String.valueOf(10 - Integer.parseInt(bookedAmount));
+        int remain = 10 - Integer.parseInt(bookedAmount);
+        String remainAmount = "";
+        if(remain==0){
+            remainAmount = "no";
+        }
+        else
+        remainAmount = String.valueOf(remain);
         String expected = String.format("You currently book %s tickets, you can book %s more.",bookedAmount,remainAmount) ;
         Assert.assertEquals(observed,expected,"Message mismatch");
     }
@@ -92,7 +98,6 @@ public class MyTicketPage extends GeneralPage{
                 + Helper.getWebElement("//table/tbody//tr[3]/td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Depart Date')]//preceding-sibling::th)+1]").getText()
                 + Helper.getWebElement("//table/tbody//tr[3]/td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Amount')]//preceding-sibling::th)+1]").getText();
 
-        myTicketPage.cancelAllTickets();
         Assert.assertEquals(expected,observed,"Old ticket does not display as expected");
     }
 }

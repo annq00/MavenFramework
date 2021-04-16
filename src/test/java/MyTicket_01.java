@@ -1,10 +1,7 @@
 import extentreport.BaseTest;
 import extentreport.Reporter;
 import org.testng.annotations.Test;
-import pageobjects.BookTicketPage;
-import pageobjects.HomePage;
-import pageobjects.MyTicketPage;
-import pageobjects.SuccessPage;
+import pageobjects.*;
 
 public class MyTicket_01 extends BaseTest {
     @Test
@@ -15,11 +12,11 @@ public class MyTicket_01 extends BaseTest {
 
         Reporter.log("Step 2: Create an account and login");
         System.out.println("Step 2: Create an account and login");
-        homePage.loginWithNewCreatedAccount();
+        LoginPage loginPage = homePage.loginWithNewCreateAccount();
 
         Reporter.log("Step 3: Book tickets");
         System.out.println("Step 3: Book tickets");
-        BookTicketPage bookTicketPage = homePage.gotoBookTicketPage();
+        BookTicketPage bookTicketPage = loginPage.gotoBookTicketPage();
         bookTicketPage.enterBookingInfo();
         SuccessPage successPage = bookTicketPage.clickBookTicketBtn();
 

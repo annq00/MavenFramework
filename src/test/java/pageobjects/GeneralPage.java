@@ -71,7 +71,7 @@ public class GeneralPage {
         return new MyTicketPage();
     }
 
-    public void loginWithNewCreatedAccount(){
+    public LoginPage loginWithNewCreateAccount(){
         String newEmail = Helper.generateRandomString(6)+"@gmail.com";
         String newPassword = Helper.generateRandomString(8);
         String newPid = Helper.generateRandomString(10);
@@ -87,5 +87,6 @@ public class GeneralPage {
         loginPage.getTbxUserName().sendKeys(newEmail);
         loginPage.getTbxPassword().sendKeys(newPassword);
         loginPage.getBtnLogin().click();
+        return new LoginPage();
     }
 }

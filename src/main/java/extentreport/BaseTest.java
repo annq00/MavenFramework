@@ -18,6 +18,7 @@ public class BaseTest {
         driver = driverManager.getWebDriver();
         driver.manage().window().maximize();
     }
+
     @AfterClass
     public void afterClass(){
         System.out.print("After Class");

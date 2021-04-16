@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" thread-count="5" parallel="classes">
+<suite name="All Test Suite" thread-count="7" parallel="classes">
     <listeners>
         <listener class-name="utils.TestListener"/>
     </listeners>
@@ -11,8 +11,8 @@
 <!--            <class name="Reg_02"/>-->
 <!--            <class name="Login_01"/>-->
 <!--            <class name="Login_02"/>-->
-<!--            <class name="BookTicket_01"/>-->
-<!--            <class name="MyTicket_01"/>-->
+            <class name="BookTicket_01"/>
+            <class name="MyTicket_01"/>
             <class name="MyTicket_02"/>
         </classes>
     </test>

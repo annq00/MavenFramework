@@ -2,6 +2,7 @@ package utils;
 
 import drivermanagers.DriverManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,6 +46,11 @@ public class Helper {
         je.executeScript("arguments[0].scrollIntoView(true);",element);
     }
 
+    public static void waitForLoad() {
+        WebDriverWait wait = new WebDriverWait(DriverManager.driver.get(), 30);
+        wait.until(ExpectedConditions.jsReturnsValue("return document.readyState=='complete';"));
+    }
+
     public static void select(WebElement element, int index){
         Select select = new Select(element);
         select.selectByIndex(index);
@@ -69,6 +75,11 @@ public class Helper {
     public static void waitFor(WebElement element){
         WebDriverWait wait = new WebDriverWait(DriverManager.driver.get(), 3);
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public static void waitUntilClickable(WebElement element){
+        WebDriverWait wait = new WebDriverWait(DriverManager.driver.get(), 3);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public static WebElement getWebElement(String locator){

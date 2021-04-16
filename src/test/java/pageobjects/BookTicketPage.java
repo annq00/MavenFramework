@@ -48,14 +48,16 @@ public class BookTicketPage extends GeneralPage {
     public void enterBookingInfo(){
         Helper.select(getCbbDepartDate(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartDate())));
         Helper.select(getCbbDepartFrom(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartFrom())));
+        Helper.waitForLoad();
         Helper.select(getCbbArriveAt(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbArriveAt())));
         Helper.select(getCbbSeatType(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbSeatType())));
         Helper.select(getCbbTicketAmount(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbTicketAmount())));
     }
 
-    public void enterBookingInfoWith1Ticket(){
+    public void enterBookingInfoWith1Ticket() {
         Helper.select(getCbbDepartDate(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartDate())));
         Helper.select(getCbbDepartFrom(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartFrom())));
+        Helper.waitForLoad();
         Helper.select(getCbbArriveAt(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbArriveAt())));
         Helper.select(getCbbSeatType(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbSeatType())));
         Helper.select(getCbbTicketAmount(),0);

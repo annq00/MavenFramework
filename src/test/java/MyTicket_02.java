@@ -10,12 +10,10 @@ public class MyTicket_02 extends BaseTest {
         System.out.println("Step 1: Navigate to Railway's HomePage");
         HomePage homePage = new HomePage().open();
 
-        Reporter.log("Step 2: Log in and cancel existed tickets");
-        System.out.println("Step 2: Log in and cancel existed tickets");
-        LoginPage loginPage = homePage.gotoLoginPage();
-        loginPage.loginWithValidAccount();
-        MyTicketPage myTicketPage = homePage.gotoMyTicketPage();
-        myTicketPage.cancelAllTickets();
+        Reporter.log("Step 2: Create an account and login");
+        System.out.println("Step 2: Create an account and login");
+        LoginPage loginPage = homePage.loginWithNewCreateAccount();
+        MyTicketPage myTicketPage = loginPage.gotoMyTicketPage();
 
         Reporter.log("Step 3: Book 1 ticket");
         System.out.println("Step 3: Book 1 ticket");
