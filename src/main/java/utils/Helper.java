@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Helper {
 
@@ -37,8 +38,7 @@ public class Helper {
             char temp = keys[random.nextInt(keys.length)];
             sb.append(temp);
         }
-        String result = sb.toString();
-        return result;
+        return sb.toString();
     }
 
     public static void scrollToElement(WebElement element) {
@@ -51,21 +51,15 @@ public class Helper {
         wait.until(ExpectedConditions.jsReturnsValue("return document.readyState=='complete';"));
     }
 
-    public static void waitForCbbText(WebElement element){
-        Select tempCbb = new Select(element);
-        WebElement tempElement = tempCbb.getFirstSelectedOption();
-        WebDriverWait wait = new WebDriverWait(DriverManager.driver.get(), 60);
-        wait.until(ExpectedConditions.visibilityOf(tempElement));
-    }
-
     public static void select(WebElement element, int index) {
         try{
+            DriverManager.driver.get().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             By xpatch = Helper.getByFromElement(element);
             WebElement temp = DriverManager.driver.get().findElement(xpatch);
             Select select = new Select(temp);
             select.selectByIndex(index);
         }catch (StaleElementReferenceException e){
-            select(element, index);
+            select(element,index);
         }
 
     }
@@ -90,30 +84,26 @@ public class Helper {
     }
 
     public static int getCbbSize(WebElement dropdown) {
-        List<WebElement> list =null;
+        int listSize = 1;
         try {
             By xpatch = Helper.getByFromElement(dropdown);
             WebElement temp = DriverManager.driver.get().findElement(xpatch);
 
             Select sl = new Select(temp);
-            list = sl.getOptions();
+            List<WebElement> list = sl.getOptions();
+            listSize = list.size();
 
 
         } catch (StaleElementReferenceException e) {
             getCbbSize(dropdown);
         }
-        return list.size();
+        return listSize;
     }
 
 
     public static void waitFor(WebElement element) {
         WebDriverWait wait = new WebDriverWait(DriverManager.driver.get(), 3);
         wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public static void waitUntilClickable(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(DriverManager.driver.get(), 3);
-        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public static WebElement getWebElement(String locator) {
@@ -143,25 +133,9 @@ public class Helper {
         return DriverManager.driver.get().findElement(locatorBy);
     }
 
-    public static boolean retryingFindClick(By by) {
-        boolean result = false;
-        int attempts = 0;
-        while (attempts < 60) {
-            try {
-                DriverManager.driver.get().findElement(by).click();
-                result = true;
-                System.out.println(attempts);
-                break;
-            } catch (StaleElementReferenceException e) {
-            }
-            attempts++;
-        }
-        return result;
-    }
 
     public static By getByFromElement(WebElement element) {
-        By by = null;
-        //[[ChromeDriver: chrome on XP (d85e7e220b2ec51b7faf42210816285e)] -> xpath: //input[@title='Search']]
+        By by;
         String[] pathVariables = (element.toString().split("->")[1].replaceFirst("(?s)(.*)\\]", "$1" + "")).split(":");
 
         String selector = pathVariables[0].trim();

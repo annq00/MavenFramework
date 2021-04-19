@@ -1,8 +1,8 @@
 package pageobjects;
 import constant.Constant;
 import drivermanagers.DriverManager;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import utils.Helper;
 
 public class HomePage extends GeneralPage{
 
@@ -25,5 +25,23 @@ public class HomePage extends GeneralPage{
         HomePage homePage = new HomePage();
         Boolean observed  = homePage.isTabLogoutExist();
         Assert.assertEquals(observed, java.util.Optional.of(true),"User is not logged in");
+    }
+
+    public void loginWithNewCreatedAccount(){
+        String newEmail = Helper.generateRandomString(6)+"@gmail.com";
+        String newPassword = Helper.generateRandomString(8);
+        String newPid = Helper.generateRandomString(10);
+        HomePage homePage = new HomePage();
+        RegisterPage registerPage = homePage.gotoRegisterPage();
+        registerPage.getTbxEmail().sendKeys(newEmail);
+        registerPage.getTbxPassword().sendKeys(newPassword);
+        registerPage.getTbxConfirmPassword().sendKeys(newPassword);
+        registerPage.getTbxPid().sendKeys(newPid);
+        Helper.scrollToElement(registerPage.getBtnRegister());
+        registerPage.getBtnRegister().click();
+        LoginPage loginPage = registerPage.gotoLoginPage();
+        loginPage.getTbxUserName().sendKeys(newEmail);
+        loginPage.getTbxPassword().sendKeys(newPassword);
+        loginPage.getBtnLogin().click();
     }
 }

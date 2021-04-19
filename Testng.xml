@@ -5,7 +5,7 @@
         <listener class-name="utils.TestListener"/>
     </listeners>
     <test name="RailWay">
-        <parameter name="browser" value="chrome"/>
+        <parameter name="browser" value="edge"/>
         <classes>
 <!--            <class name="Reg_01"/>-->
 <!--            <class name="Reg_02"/>-->
