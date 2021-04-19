@@ -4,7 +4,6 @@ import constant.Constant;
 import drivermanagers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import utils.Helper;
 
 public class BookTicketPage extends GeneralPage {
@@ -48,8 +47,11 @@ public class BookTicketPage extends GeneralPage {
     public void enterBookingInfo(){
         Helper.select(getCbbDepartDate(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartDate())));
         Helper.select(getCbbDepartFrom(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartFrom())));
-        Helper.waitForLoad();
+        Helper.waitForCbbText(getCbbArriveAt());
+//        Helper.retryingFindClick(cbbArriveAt);
         Helper.select(getCbbArriveAt(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbArriveAt())));
+//        Helper.select(Helper.getWebElement("//*[@id='content']//select[@name='ArriveStation']"),
+//                Helper.getRandomNumber(0,Helper.getCbbSize(Helper.getWebElement("//*[@id='content']//select[@name='ArriveStation']"))));
         Helper.select(getCbbSeatType(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbSeatType())));
         Helper.select(getCbbTicketAmount(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbTicketAmount())));
     }
@@ -57,7 +59,10 @@ public class BookTicketPage extends GeneralPage {
     public void enterBookingInfoWith1Ticket() {
         Helper.select(getCbbDepartDate(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartDate())));
         Helper.select(getCbbDepartFrom(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartFrom())));
-        Helper.waitForLoad();
+        Helper.waitForCbbText(getCbbArriveAt());
+//        Helper.retryingFindClick(cbbArriveAt);
+//        Helper.select(Helper.getWebElement("//*[@id='content']//select[@name='ArriveStation']"),
+//                Helper.getRandomNumber(0,Helper.getCbbSize(Helper.getWebElement("//*[@id='content']//select[@name='ArriveStation']"))));
         Helper.select(getCbbArriveAt(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbArriveAt())));
         Helper.select(getCbbSeatType(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbSeatType())));
         Helper.select(getCbbTicketAmount(),0);
@@ -66,11 +71,11 @@ public class BookTicketPage extends GeneralPage {
     public String getBookingInfo(){
 
         String info = Constant.PID
-                +Helper.selectCurrentOption(getCbbDepartFrom())
-                +Helper.selectCurrentOption(getCbbArriveAt())
-                +Helper.selectCurrentOption(getCbbSeatType())
-                +Helper.selectCurrentOption(getCbbDepartDate())
-                +Helper.selectCurrentOption(getCbbTicketAmount());
+                +Helper.getCbbText(getCbbDepartFrom())
+                +Helper.getCbbText(getCbbArriveAt())
+                +Helper.getCbbText(getCbbSeatType())
+                +Helper.getCbbText(getCbbDepartDate())
+                +Helper.getCbbText(getCbbTicketAmount());
         return info;
     }
 

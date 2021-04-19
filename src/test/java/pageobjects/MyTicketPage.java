@@ -70,14 +70,19 @@ public class MyTicketPage extends GeneralPage{
         String observed = this.getTxtNoteMsg().getText();
         String bookedAmount = this.getTxtTicketAmount().getText();
         int remain = 10 - Integer.parseInt(bookedAmount);
-        String remainAmount = "";
+        String expected;
         if(remain==0){
-            remainAmount = "no";
+            expected = "You currently book 10 tickets, you can book no more.";
         }
-        else
-        remainAmount = String.valueOf(remain);
-        String expected = String.format("You currently book %s tickets, you can book %s more.",bookedAmount,remainAmount) ;
+        else if (remain==9){
+            expected = "You currently book 1 ticket, you can book 9 more.";
+        }
+        else {
+            String remainAmount = String.valueOf(remain);
+            expected = String.format("You currently book %s tickets, you can book %s more.", bookedAmount, remainAmount);
+        }
         Assert.assertEquals(observed,expected,"Message mismatch");
+
     }
 
     public void checkOldTickets(){
