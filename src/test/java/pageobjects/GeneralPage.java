@@ -1,92 +1,67 @@
 package pageobjects;
 
-import drivermanagers.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import utils.Helper;
+import Control.Label;
+import Control.Message;
+import constant.Constant;
+import extentreport.Reporter;
+import util.Helper;
 
 public class GeneralPage {
 
-    private final By tabLogin = By.xpath("//*[@id='menu']//span[contains(text(),'Login')]");
-    private final By tabLogout = By.xpath("//*[@id='menu']//span[contains(text(),'Log out')]");
-    private final By lblWelcomeMsg = By.xpath("//*[@id='banner']/div/strong");
-    private final By tabRegister = By.xpath("//*[@id='menu']//span[contains(text(),'Register')]");
-    private final By tabBookTicket = By.xpath("//*[@id='menu']//span[contains(text(),'Book ticket')]");
-    private final By tabMyTicket = By.xpath("//*[@id='menu']//span[contains(text(),'My ticket')]");
-    private final By txtPageHeader = By.xpath("//*[@id='content']/h1");
-
-    protected WebElement getTabLogin() {
-        return DriverManager.driver.get().findElement(tabLogin);
-    }
-    protected WebElement getTabLogout() {
-        return DriverManager.driver.get().findElement(tabLogout);
-    }
-    protected WebElement getLblWelcomeMsg() {
-        return DriverManager.driver.get().findElement(lblWelcomeMsg);
-    }
-    protected WebElement getTabRegister() {
-        return DriverManager.driver.get().findElement(tabRegister);
-    }
-    protected WebElement getTabBookTicket() {
-        return DriverManager.driver.get().findElement(tabBookTicket);
-    }
-    protected WebElement getTabMyTicket() {
-        return DriverManager.driver.get().findElement(tabMyTicket);
-    }
-    protected WebElement getTxtPageHeader(){
-        return DriverManager.driver.get().findElement(txtPageHeader);
-    }
-
-
+    protected final Label tabLogin = new Label("//*[@id='menu']//span[contains(text(),'Login')]");
+    protected final Label tabLogout = new Label("//*[@id='menu']//span[contains(text(),'Log out')]");
+    protected final Message welcomeMsg = new Message("//*[@id='banner']/div/strong");
+    protected final Label tabRegister = new Label("//*[@id='menu']//span[contains(text(),'Register')]");
+    protected final Label tabBookTicket = new Label("//*[@id='menu']//span[contains(text(),'Book ticket')]");
+    protected final Label tabMyTicket = new Label("//*[@id='menu']//span[contains(text(),'My ticket')]");
+    protected final Message pageHeader = new Message("//*[@id='content']/h1");
 
     public String getWelcomeMsg() {
-        return this.getLblWelcomeMsg().getText();
+        return welcomeMsg.getText();
     }
 
     public String getPageHeader() {
-        return this.getTxtPageHeader().getText();
+        return pageHeader.getText();
     }
 
     public LoginPage gotoLoginPage() {
-        this.getTabLogin().click();
+        tabLogin.click();
         return new LoginPage();
     }
 
-    public boolean isTabLogoutExist() {
-        return DriverManager.driver.get().findElements(tabLogout).size() > 0;
-    }
-
     public RegisterPage gotoRegisterPage() {
-        this.getTabRegister().click();
+        tabRegister.click();
         return new RegisterPage();
     }
 
-    public BookTicketPage gotoBookTicketPage(){
-        this.getTabBookTicket().click();
+    public BookTicketPage gotoBookTicketPage() {
+        tabBookTicket.click();
         return new BookTicketPage();
     }
 
-    public MyTicketPage gotoMyTicketPage(){
-        this.getTabMyTicket().click();
+    public MyTicketPage gotoMyTicketPage() {
+        tabMyTicket.click();
         return new MyTicketPage();
     }
 
-    public LoginPage loginWithNewCreateAccount(){
-        String newEmail = Helper.generateRandomString(6)+"@gmail.com";
+    public LoginPage loginWithNewCreateAccount(Boolean randomPID) {
+        String newEmail = Helper.generateRandomString(6) + "@gmail.com";
         String newPassword = Helper.generateRandomString(8);
-        String newPid = Helper.generateRandomString(10);
+        String newPid = Constant.PID;
+        if (randomPID) {
+            newPid = Helper.generateRandomString(10);
+        }
+        Reporter.log(String.format("Account's username is %s", newEmail));
+        Reporter.log(String.format("Account's password is %s", newPassword));
+        Reporter.log(String.format("Account's PID is %s", newPid));
+
         HomePage homePage = new HomePage();
+        //register an account with random info
         RegisterPage registerPage = homePage.gotoRegisterPage();
-        registerPage.getTbxEmail().sendKeys(newEmail);
-        registerPage.getTbxPassword().sendKeys(newPassword);
-        registerPage.getTbxConfirmPassword().sendKeys(newPassword);
-        registerPage.getTbxPid().sendKeys(newPid);
-        Helper.scrollToElement(registerPage.getBtnRegister());
-        registerPage.getBtnRegister().click();
+        registerPage.createAccount(newEmail, newPassword, newPid);
+        //log in with the new account
         LoginPage loginPage = registerPage.gotoLoginPage();
-        loginPage.getTbxUserName().sendKeys(newEmail);
-        loginPage.getTbxPassword().sendKeys(newPassword);
-        loginPage.getBtnLogin().click();
+        loginPage.loginWithValidAccount(newEmail, newPassword);
         return new LoginPage();
     }
 }

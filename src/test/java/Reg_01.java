@@ -7,7 +7,7 @@ import pageobjects.RegisterPage;
 public class Reg_01 extends BaseTest {
 
     @Test
-    public void User_can_open_the_Register_page(){
+    public void User_can_open_the_Register_page() {
         Reporter.log("Step 1: Navigate to Railway's HomePage");
         System.out.println("Step 1: Navigate to Railway's HomePage");
         HomePage homePage = new HomePage().open();
@@ -18,6 +18,6 @@ public class Reg_01 extends BaseTest {
 
         Reporter.log("Step 3: Check if the RegisterPage is opened");
         System.out.println("Step 3: Check if the RegisterPage is opened");
-        registerPage.isRegisterPageOpen();
+        registerPage.doesRegisterPageOpen();
     }
 }

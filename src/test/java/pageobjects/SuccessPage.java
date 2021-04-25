@@ -1,47 +1,27 @@
 package pageobjects;
 
-import drivermanagers.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import utils.Helper;
+import Control.Message;
+import Control.TableColumn;
+import drivermanagers.Driver;
 
 public class SuccessPage extends GeneralPage {
-    private final By registeredPID = By.xpath("//*[@id='content']//strong[2]");
-    private final By bookedDepartStation = By.xpath("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Depart Station')]//preceding-sibling::th)+1]");
-    private final By bookedArriveStation = By.xpath("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Arrive Station')]//preceding-sibling::th)+1]");
-    private final By bookedSeatType = By.xpath("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Seat Type')]//preceding-sibling::th)+1]");
-    private final By bookedDepartDate = By.xpath("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Depart Date')]//preceding-sibling::th)+1]");
-    private final By bookedTicketAmount = By.xpath("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Amount')]//preceding-sibling::th)+1]");
 
-    protected WebElement getRegisteredPID(){
-        return DriverManager.driver.get().findElement(registeredPID);
-    }
-    protected WebElement getBookedDepartStation(){
-        return DriverManager.driver.get().findElement(bookedDepartStation);
-    }
-    protected WebElement getBookedArriveStation(){
-        return DriverManager.driver.get().findElement(bookedArriveStation);
-    }
-    protected WebElement getBookedSeatType(){
-        return DriverManager.driver.get().findElement(bookedSeatType);
-    }
-    protected WebElement getBookedDepartDate(){
-        return DriverManager.driver.get().findElement(bookedDepartDate);
-    }
-    protected WebElement getBookedTicketAmount(){
-        return DriverManager.driver.get().findElement(bookedTicketAmount);
-    }
+    private final Message registeredPID = new Message("//*[@id='content']//strong[2]");
+    private final TableColumn departStationTC = new TableColumn("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Depart Station')]//preceding-sibling::th)+1]");
+    private final TableColumn arriveStationTC = new TableColumn("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Arrive Station')]//preceding-sibling::th)+1]");
+    private final TableColumn seatTypeTC = new TableColumn("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Seat Type')]//preceding-sibling::th)+1]");
+    private final TableColumn departDateTC = new TableColumn("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Depart Date')]//preceding-sibling::th)+1]");
+    private final TableColumn ticketAmountTC = new TableColumn("//table/tbody//td[count(//tr[@class='TableSmallHeader']//th[contains(text(),'Amount')]//preceding-sibling::th)+1]");
 
-    public String getConfirmationInfo(){
-        Helper.waitFor(getRegisteredPID());
+    public String getConfirmationInfo() {
+        Driver.waitFor(registeredPID);
 
-        String confirmInfo = getRegisteredPID().getText()
-                +getBookedDepartStation().getText()
-                +getBookedArriveStation().getText()
-                +getBookedSeatType().getText()
-                +getBookedDepartDate().getText()
-                +getBookedTicketAmount().getText();
+        String confirmInfo = registeredPID.getText()
+                + departStationTC.getText()
+                + arriveStationTC.getText()
+                + seatTypeTC.getText()
+                + departDateTC.getText()
+                + ticketAmountTC.getText();
         return confirmInfo;
     }
-
 }

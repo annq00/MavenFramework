@@ -1,60 +1,38 @@
 package pageobjects;
 
+import Control.Button;
+import Control.Message;
+import Control.TextBox;
 import constant.Constant;
-import drivermanagers.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import drivermanagers.Driver;
+import extentreport.Reporter;
 import org.testng.Assert;
-import utils.Helper;
-
-
+import util.Helper;
 
 public class RegisterPage extends GeneralPage {
-    private final By tbxEmail = By.id("email");
-    private final By tbxPassword = By.id("password");
-    private final By tbxConfirmPassword = By.id("confirmPassword");
-    private final By tbxPid = By.id("pid");
-    private final By btnRegister = By.xpath("//*[@id='RegisterForm']/fieldset/p/input");
-    private final By txtGeneralErrorMsg = By.xpath("//p[@class='message error']");
+    private final TextBox emailTbx = new TextBox("id=email");
+    private final TextBox passwordTbx = new TextBox("id=password");
+    private final TextBox confirmPasswordTbx = new TextBox("id=confirmPassword");
+    private final TextBox pidTbx = new TextBox("id=pid");
+    private final Button registerBtn = new Button("//*[@id='RegisterForm']/fieldset/p/input");
+    private final Message generalErrorMsg = new Message("//p[@class='message error']");
 
-    protected WebElement getTbxEmail(){
-        return DriverManager.driver.get().findElement(tbxEmail);
-    }
-    protected WebElement getTbxPassword(){
-        return DriverManager.driver.get().findElement(tbxPassword);
-    }
-    protected WebElement getTbxConfirmPassword(){
-        return DriverManager.driver.get().findElement(tbxConfirmPassword);
-    }
-    protected WebElement getTbxPid(){
-        return DriverManager.driver.get().findElement(tbxPid);
-    }
-    protected WebElement getBtnRegister(){
-        return DriverManager.driver.get().findElement(btnRegister);
-    }
-    protected WebElement getTxtGeneralErrorMsg(){
-        return DriverManager.driver.get().findElement(txtGeneralErrorMsg);
-    }
-
-    public void isRegisterPageOpen(){
+    public void doesRegisterPageOpen() {
         String pageHeader = this.getPageHeader();
-        Assert.assertEquals(pageHeader, Constant.RegisterPageHeader,"RegisterPage does not display as expected");
+        Assert.assertEquals(pageHeader, Constant.RegisterPageHeader, "RegisterPage does not display as expected");
     }
 
-    public void createAccountWithUsedEmail(){
-        this.getTbxEmail().sendKeys(Constant.username);
-        String password = Helper.generateRandomString(8);
-        this.getTbxPassword().sendKeys(password);
-        this.getTbxConfirmPassword().sendKeys(password);
-        this.getTbxPid().sendKeys(Helper.generateRandomString(8));
-        Helper.scrollToElement(getBtnRegister());
-        this.getBtnRegister().click();
+    public void createAccount(String email, String password, String pid) {
+        emailTbx.enter(email);
+        passwordTbx.enter(password);
+        confirmPasswordTbx.enter(password);
+        pidTbx.enter(pid);
+        Driver.scrollToElement(registerBtn);
+        registerBtn.click();
     }
 
-    public void checkRegisterErrorMessage(String actualErrorMsg){
-        String observedErrorMsg = this.getTxtGeneralErrorMsg().getText();
-        Assert.assertEquals(observedErrorMsg,actualErrorMsg,"Error message does not display as expected");
+    public void checkRegisterErrorMessage(String actualErrorMsg) {
+        String observedErrorMsg = generalErrorMsg.getText();
+        Assert.assertEquals(observedErrorMsg, actualErrorMsg, "Error message does not display as expected");
     }
-
-
 }

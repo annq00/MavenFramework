@@ -7,7 +7,7 @@ import pageobjects.RegisterPage;
 
 public class Login_02 extends BaseTest {
     @Test
-    public void Open_RegisterPage_by_clicking_the_hyperlink_registration_page(){
+    public void Open_RegisterPage_by_clicking_the_hyperlink_registration_page() {
         Reporter.log("Step 1: Navigate to Railway's HomePage");
         System.out.println("Step 1: Navigate to Railway's HomePage");
         HomePage homePage = new HomePage().open();
@@ -22,6 +22,6 @@ public class Login_02 extends BaseTest {
 
         Reporter.log("Step 4: Check if the Login page is displayed");
         System.out.println("Step 3: Check if the Login page is displayed");
-        registerPage.isRegisterPageOpen();
+        registerPage.doesRegisterPageOpen();
     }
 }

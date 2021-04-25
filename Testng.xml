@@ -2,10 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" thread-count="7" parallel="classes">
     <listeners>
-        <listener class-name="utils.TestListener"/>
+        <listener class-name="util.TestListener"/>
     </listeners>
     <test name="RailWay">
-        <parameter name="browser" value="edge"/>
+        <parameter name="browser" value="chrome"/>
         <classes>
 <!--            <class name="Reg_01"/>-->
 <!--            <class name="Reg_02"/>-->

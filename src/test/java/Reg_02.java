@@ -4,10 +4,11 @@ import extentreport.Reporter;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import pageobjects.RegisterPage;
+import util.Helper;
 
 public class Reg_02 extends BaseTest {
     @Test
-    public void User_cannot_create_account_using_registered_email(){
+    public void User_cannot_create_account_using_registered_email() {
         Reporter.log("Step 1: Navigate to Railway's HomePage");
         System.out.println("Step 1: Navigate to Railway's HomePage");
         HomePage homePage = new HomePage().open();
@@ -18,7 +19,7 @@ public class Reg_02 extends BaseTest {
 
         Reporter.log("Step 3: Create an account with registered email");
         System.out.println("Step 3: Create an account with registered email");
-        registerPage.createAccountWithUsedEmail();
+        registerPage.createAccount(Constant.username, Helper.generateRandomString(8), Helper.generateRandomString(10));
 
         Reporter.log("Step 4: Check the error message");
         System.out.println("Step 4: Check the error message");

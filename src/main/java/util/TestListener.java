@@ -1,13 +1,14 @@
-package utils;
+package util;
 
 import com.aventstack.extentreports.Status;
-import drivermanagers.DriverManager;
+import drivermanagers.Driver;
 import extentreport.ExtentManager;
 import extentreport.ExtentTestManager;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
 import java.io.IOException;
 
 
@@ -29,7 +30,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         String fileName = Helper.generateTimeStampString() + ".png";
-        logger.info(DriverManager.captureScreenshot(fileName, ExtentManager.getReportPath()));
+        logger.info(Driver.captureScreenshot(fileName, ExtentManager.getReportPath()));
         try {
             ExtentTestManager.getTest().fail(result.getThrowable());
             ExtentTestManager.getTest().addScreenCaptureFromPath(fileName, "Failure Screenshot");

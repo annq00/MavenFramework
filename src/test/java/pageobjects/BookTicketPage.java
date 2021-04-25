@@ -1,72 +1,46 @@
 package pageobjects;
 
+import Control.Button;
+import Control.DropDown;
 import constant.Constant;
-import drivermanagers.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import utils.Helper;
+import drivermanagers.Driver;
+import util.Helper;
 
 public class BookTicketPage extends GeneralPage {
 
-    private final By cbbDepartDate = By.xpath("//*[@id='content']//select[@name='Date']") ;
-    private final By cbbDepartFrom = By.xpath("//*[@id='content']//select[@name='DepartStation']");
-    private final By cbbArriveAt = By.xpath("//*[@id='content']//select[@name='ArriveStation']");
-    private final By cbbSeatType = By.xpath("//*[@id='content']//select[@name='SeatType']");
-    private final By cbbTicketAmount = By.xpath("//*[@id='content']//select[@name='TicketAmount']");
-    private final By btnBookTicket = By.xpath("//input[@type='submit'][@value='Book ticket']");
+    private final DropDown departDateDD = new DropDown("//*[@id='content']//select[@name='Date']");
+    private final DropDown departFromDD = new DropDown("//*[@id='content']//select[@name='DepartStation']");
+    private final DropDown arriveAtDD = new DropDown("//*[@id='content']//select[@name='ArriveStation']");
+    private final DropDown seatTypeDD = new DropDown("//*[@id='content']//select[@name='SeatType']");
+    private final DropDown ticketAmountDD = new DropDown("//*[@id='content']//select[@name='TicketAmount']");
+    private final Button bookTicketBtn = new Button("//input[@type='submit'][@value='Book ticket']");
 
-    protected WebElement getCbbDepartDate(){
-        return DriverManager.driver.get().findElement(cbbDepartDate);
-    }
-    protected WebElement getCbbDepartFrom(){
-        return DriverManager.driver.get().findElement(cbbDepartFrom);
-    }
-    protected WebElement getCbbArriveAt(){
-        return DriverManager.driver.get().findElement(cbbArriveAt);
-    }
-    protected WebElement getCbbSeatType(){
-        return DriverManager.driver.get().findElement(cbbSeatType);
-    }
-    protected WebElement getCbbTicketAmount(){
-        return DriverManager.driver.get().findElement(cbbTicketAmount);
-    }
-    protected WebElement getBtnBookTicket(){
-        return DriverManager.driver.get().findElement(btnBookTicket);
-    }
-
-
-    public SuccessPage clickBookTicketBtn(){
-        Helper.scrollToElement(getBtnBookTicket());
-        this.getBtnBookTicket().click();
+    public SuccessPage clickBookTicketBtn() {
+        Driver.scrollToElement(bookTicketBtn);
+        bookTicketBtn.click();
         return new SuccessPage();
     }
 
-    public void enterBookingInfo(){
-        Helper.select(getCbbDepartDate(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartDate())));
-        Helper.select(getCbbDepartFrom(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartFrom())));
-        Helper.select(getCbbArriveAt(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbArriveAt())));
-        Helper.select(getCbbSeatType(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbSeatType())));
-        Helper.select(getCbbTicketAmount(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbTicketAmount())));
+    public void enterBookingInfo(int tickets) {
+        departDateDD.select(Helper.getRandomNumber(0, departDateDD.getSize()));
+        departFromDD.select(Helper.getRandomNumber(0, departFromDD.getSize()));
+        arriveAtDD.select(Helper.getRandomNumber(0, arriveAtDD.getSize()));
+        seatTypeDD.select(Helper.getRandomNumber(0, seatTypeDD.getSize()));
+        if (0 < tickets && tickets < 11) {
+            ticketAmountDD.select(Helper.getRandomNumber(0, tickets - 1));
+        } else {
+            ticketAmountDD.select(Helper.getRandomNumber(0, ticketAmountDD.getSize()));
+        }
     }
 
-    public void enterBookingInfoWith1Ticket() {
-        Helper.select(getCbbDepartDate(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartDate())));
-        Helper.select(getCbbDepartFrom(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbDepartFrom())));
-        Helper.select(getCbbArriveAt(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbArriveAt())));
-        Helper.select(getCbbSeatType(),Helper.getRandomNumber(0,Helper.getCbbSize(getCbbSeatType())));
-        Helper.select(getCbbTicketAmount(),0);
-    }
-
-    public String getBookingInfo(){
-
+    public String getBookingInfo() {
         String info = Constant.PID
-                +Helper.getCbbText(getCbbDepartFrom())
-                +Helper.getCbbText(getCbbArriveAt())
-                +Helper.getCbbText(getCbbSeatType())
-                +Helper.getCbbText(getCbbDepartDate())
-                +Helper.getCbbText(getCbbTicketAmount());
+                + departFromDD.getSelectedOption()
+                + arriveAtDD.getSelectedOption()
+                + seatTypeDD.getSelectedOption()
+                + departDateDD.getSelectedOption()
+                + ticketAmountDD.getSelectedOption();
         return info;
     }
-
 
 }
