@@ -1,4 +1,4 @@
-package util;
+package com.railway.util;
 
 import org.openqa.selenium.*;
 

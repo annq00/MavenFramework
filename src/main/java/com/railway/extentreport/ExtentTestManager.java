@@ -1,4 +1,4 @@
-package extentreport;
+package com.railway.extentreport;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;

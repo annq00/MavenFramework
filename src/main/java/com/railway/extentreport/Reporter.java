@@ -1,4 +1,4 @@
-package extentreport;
+package com.railway.extentreport;
 
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.MarkupHelper;

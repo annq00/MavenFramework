@@ -1,9 +1,9 @@
 package pageobjects;
 
-import control.Button;
-import control.Message;
-import control.TableColumn;
-import drivermanager.Driver;
+import com.railway.control.Button;
+import com.railway.control.Message;
+import com.railway.control.TableColumn;
+import com.railway.drivermanager.Driver;
 import org.testng.Assert;
 
 public class MyTicketPage extends GeneralPage {

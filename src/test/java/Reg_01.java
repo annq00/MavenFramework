@@ -1,5 +1,5 @@
-import extentreport.BaseTest;
-import extentreport.Reporter;
+import com.railway.extentreport.BaseTest;
+import com.railway.extentreport.Reporter;
 import org.testng.annotations.Test;
 import pageobjects.HomePage;
 import pageobjects.RegisterPage;

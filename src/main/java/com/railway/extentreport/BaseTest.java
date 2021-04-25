@@ -1,8 +1,8 @@
-package extentreport;
+package com.railway.extentreport;
 
-import constant.Constant;
-import drivermanager.Driver;
-import drivermanager.DriverFactory;
+import com.railway.constant.Constant;
+import com.railway.drivermanager.Driver;
+import com.railway.drivermanager.DriverFactory;
 import org.testng.annotations.*;
 
 public class BaseTest {

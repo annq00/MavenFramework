@@ -1,8 +1,8 @@
 package pageobjects;
 
-import control.Message;
-import control.TableColumn;
-import drivermanager.Driver;
+import com.railway.control.Message;
+import com.railway.control.TableColumn;
+import com.railway.drivermanager.Driver;
 
 public class SuccessPage extends GeneralPage {
 

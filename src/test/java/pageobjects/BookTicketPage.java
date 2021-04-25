@@ -1,10 +1,10 @@
 package pageobjects;
 
-import control.Button;
-import control.DropDown;
-import constant.Constant;
-import drivermanager.Driver;
-import util.Helper;
+import com.railway.control.Button;
+import com.railway.control.DropDown;
+import com.railway.constant.Constant;
+import com.railway.drivermanager.Driver;
+import com.railway.util.Helper;
 
 public class BookTicketPage extends GeneralPage {
 

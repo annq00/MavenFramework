@@ -1,10 +1,10 @@
 package pageobjects;
 
-import control.Label;
-import control.Message;
-import constant.Constant;
-import extentreport.Reporter;
-import util.Helper;
+import com.railway.control.Label;
+import com.railway.control.Message;
+import com.railway.constant.Constant;
+import com.railway.extentreport.Reporter;
+import com.railway.util.Helper;
 
 public class GeneralPage {
 

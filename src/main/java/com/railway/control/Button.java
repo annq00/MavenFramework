@@ -1,4 +1,4 @@
-package control;
+package com.railway.control;
 
 public class Button extends Element {
 

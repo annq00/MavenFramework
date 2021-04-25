@@ -1,13 +1,13 @@
-package extentreport;
+package com.railway.extentreport;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-import constant.Constant;
+import com.railway.constant.Constant;
 import org.apache.commons.codec.CharEncoding;
 import org.apache.log4j.Logger;
-import util.Helper;
+import com.railway.util.Helper;
 
 import java.io.File;
 

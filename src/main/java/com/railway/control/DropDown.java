@@ -1,6 +1,6 @@
-package control;
+package com.railway.control;
 
-import drivermanager.Driver;
+import com.railway.drivermanager.Driver;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;

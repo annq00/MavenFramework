@@ -1,9 +1,9 @@
-package util;
+package com.railway.util;
 
 import com.aventstack.extentreports.Status;
-import drivermanager.Driver;
-import extentreport.ExtentManager;
-import extentreport.ExtentTestManager;
+import com.railway.drivermanager.Driver;
+import com.railway.extentreport.ExtentManager;
+import com.railway.extentreport.ExtentTestManager;
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;

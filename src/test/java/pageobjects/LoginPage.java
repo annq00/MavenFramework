@@ -1,10 +1,10 @@
 package pageobjects;
 
-import control.Button;
-import control.Link;
-import control.Message;
-import control.TextBox;
-import constant.Constant;
+import com.railway.control.Button;
+import com.railway.control.Link;
+import com.railway.control.Message;
+import com.railway.control.TextBox;
+import com.railway.constant.Constant;
 import org.testng.Assert;
 
 public class LoginPage extends GeneralPage {

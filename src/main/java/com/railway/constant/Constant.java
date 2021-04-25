@@ -1,4 +1,4 @@
-package constant;
+package com.railway.constant;
 
 public class Constant {
     public static final String username = "test+2@gmail.com";
