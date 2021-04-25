@@ -1,7 +1,7 @@
 package util;
 
 import com.aventstack.extentreports.Status;
-import drivermanagers.Driver;
+import drivermanager.Driver;
 import extentreport.ExtentManager;
 import extentreport.ExtentTestManager;
 import org.apache.log4j.Logger;

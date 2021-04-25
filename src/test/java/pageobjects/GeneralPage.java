@@ -1,7 +1,7 @@
 package pageobjects;
 
-import Control.Label;
-import Control.Message;
+import control.Label;
+import control.Message;
 import constant.Constant;
 import extentreport.Reporter;
 import util.Helper;

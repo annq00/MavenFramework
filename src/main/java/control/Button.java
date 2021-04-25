@@ -1,4 +1,4 @@
-package Control;
+package control;
 
 public class Button extends Element {
 

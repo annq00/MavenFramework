@@ -1,6 +1,6 @@
-package Control;
+package control;
 
-import drivermanagers.Driver;
+import drivermanager.Driver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;

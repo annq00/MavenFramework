@@ -1,4 +1,4 @@
-package Control;
+package control;
 
 public class TextBox extends Element {
 

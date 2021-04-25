@@ -1,13 +1,11 @@
 package pageobjects;
 
-import Control.Button;
-import Control.Message;
-import Control.TextBox;
+import control.Button;
+import control.Message;
+import control.TextBox;
 import constant.Constant;
-import drivermanagers.Driver;
-import extentreport.Reporter;
+import drivermanager.Driver;
 import org.testng.Assert;
-import util.Helper;
 
 public class RegisterPage extends GeneralPage {
     private final TextBox emailTbx = new TextBox("id=email");

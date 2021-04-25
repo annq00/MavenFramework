@@ -1,9 +1,9 @@
 package pageobjects;
 
-import Control.Button;
-import Control.Link;
-import Control.Message;
-import Control.TextBox;
+import control.Button;
+import control.Link;
+import control.Message;
+import control.TextBox;
 import constant.Constant;
 import org.testng.Assert;
 

@@ -1,7 +1,7 @@
-package drivermanagers;
+package drivermanager;
 
 
-import Control.Element;
+import control.Element;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;

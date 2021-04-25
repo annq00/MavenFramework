@@ -1,6 +1,6 @@
-package Control;
+package control;
 
-import drivermanagers.Driver;
+import drivermanager.Driver;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;

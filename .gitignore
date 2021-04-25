@@ -6,3 +6,4 @@
 /TestReport
 # Project exclude paths
 /target/
+/reports/

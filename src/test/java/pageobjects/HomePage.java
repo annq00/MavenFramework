@@ -1,7 +1,7 @@
 package pageobjects;
 
 import constant.Constant;
-import drivermanagers.Driver;
+import drivermanager.Driver;
 import org.testng.Assert;
 
 public class HomePage extends GeneralPage {
