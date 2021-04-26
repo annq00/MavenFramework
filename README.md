@@ -1,17 +1,28 @@
 # MavenFramework
 
+# About The Project
 This is a practice project for selenium 2 course.
 
-Make sure Maven is installed in your computer
-If maven is not installed, following instructions in this link 
-https://www.baeldung.com/install-maven-on-windows-linux-mac
+An Automation Framework uses Selenium, TestNg and Extent report to test the http://www.railway.somee.com website
 
-Open your IDE command line or window command line > Navigate to the project directory > Execute "mvn test"
+# Build with
+- Automation framework: Selenium
+- Dependency management: Maven
+- Testing framework: TestNG
+- Report: Extent report
 
-Run the Testng.xml file using Shift+F10
+# Getting started
+Follow below instructions to set up and run the project locally
+- Required:
+1. Git => https://git-scm.com/downloads
+2. IntelliJ IDEA => https://www.jetbrains.com/idea/download/#section=windows
+- Clone the repo
+<code>git clone https://github.com/annq00/MavenFramework.git</code>
+- Usage: 
+1. Build the project using the combination of Ctrl+F9
+2. Run the testcases in Regression.xml using the combination of Ctrl+f10 or Ctrl+Shift+f10 after open the xml file
+3. Check the report in the TestReport folder
 
-Modify Tesng.xml file for parallel options
-
-The framework only supports chrome and edge browser for now
-
-Checking test report in the "reports" folder
+# Issues:
+- The framework only supports chrome and edge browser for now
+- The script is not stable under slow internet connection
