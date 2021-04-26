@@ -1,15 +1,14 @@
 package com.railway.drivermanager;
 
-
 import com.railway.control.Element;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.File;
 import java.util.List;
+import java.util.function.Function;
 
 public abstract class Driver {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
@@ -60,11 +59,6 @@ public abstract class Driver {
         je.executeScript("arguments[0].scrollIntoView(true);", webElement);
     }
 
-    public static void waitForLoad() {
-        WebDriverWait wait = new WebDriverWait(Driver.getWebDriver(), 60);
-        wait.until(ExpectedConditions.jsReturnsValue("return document.readyState=='complete';"));
-    }
-
     public static void waitFor(Element element) {
         WebElement webElement = element.getCurrentElement();
         WebDriverWait wait = new WebDriverWait(Driver.getWebDriver(), 3);
@@ -94,7 +88,6 @@ public abstract class Driver {
                 locatorBy = By.tagName(locator.substring(3));
                 break;
         }
-
         return Driver.getWebDriver().findElement(locatorBy);
     }
 
@@ -122,5 +115,27 @@ public abstract class Driver {
                 break;
         }
         return Driver.getWebDriver().findElements(locatorBy);
+    }
+
+    public static void waitForJavaScriptIdle() {
+        try {
+            WebDriverWait wait = new WebDriverWait(getWebDriver(), 30);
+
+            wait.until(new Function<WebDriver, Boolean>() {
+                @Override
+                public Boolean apply(WebDriver driver) {
+                    JavascriptExecutor executor = (JavascriptExecutor) driver;
+                    Boolean ajaxIsComplete = (Boolean) (executor
+                            .executeScript("if (typeof jQuery != 'undefined') { return jQuery.active == 0; } else {  return true; }"));
+                    Boolean domIsComplete = (Boolean) (executor
+                            .executeScript("return document.readyState == 'complete';"));
+                    return ajaxIsComplete & domIsComplete;
+                }
+            });
+            Thread.sleep(500);
+        } catch (Exception e) {
+            logger.error("waitForJavaScriptIdle: An error occurred when waitForAjaxJQueryProcess"
+                    + e.getMessage());
+        }
     }
 }

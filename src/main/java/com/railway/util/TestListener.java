@@ -8,9 +8,7 @@ import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 import java.io.IOException;
-
 
 public class TestListener implements ITestListener {
     private final Logger logger = Logger.getLogger(this.getClass());
@@ -43,13 +41,11 @@ public class TestListener implements ITestListener {
     public void onTestSkipped(ITestResult result) {
         logger.debug("*** Test " + result.getMethod().getMethodName() + " skipped...");
         ExtentTestManager.getTest().log(Status.SKIP, "Test Skipped");
-
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -63,5 +59,4 @@ public class TestListener implements ITestListener {
         ExtentTestManager.endTest();
         ExtentManager.getInstance().flush();
     }
-
 }

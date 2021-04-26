@@ -5,6 +5,7 @@ import com.railway.control.Link;
 import com.railway.control.Message;
 import com.railway.control.TextBox;
 import com.railway.constant.Constant;
+import com.railway.drivermanager.Driver;
 import org.testng.Assert;
 
 public class LoginPage extends GeneralPage {
@@ -16,6 +17,7 @@ public class LoginPage extends GeneralPage {
     private final Link registerPageLink = new Link("//a[contains(text(),'registration page')]");
 
     public HomePage loginWithValidAccount(String username, String password) {
+        Driver.waitFor(registerPageLink);
         userNameTbx.enter(username);
         passWordTbx.enter(password);
         loginBtn.click();

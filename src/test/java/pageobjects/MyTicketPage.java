@@ -55,7 +55,6 @@ public class MyTicketPage extends GeneralPage {
             expected = String.format("You currently book %s tickets, you can book %s more.", bookedAmount, remainAmount);
         }
         Assert.assertEquals(observed, expected, "Message mismatch");
-
     }
 
     public void checkOldTickets() {

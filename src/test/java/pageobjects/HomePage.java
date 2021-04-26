@@ -7,7 +7,7 @@ import org.testng.Assert;
 public class HomePage extends GeneralPage {
 
     public HomePage open() {
-        Driver.getWebDriver().navigate().to("http://railway.somee.com/Page/HomePage.cshtml");
+        Driver.navigateTo("http://railway.somee.com/Page/HomePage.cshtml");
         return this;
     }
 

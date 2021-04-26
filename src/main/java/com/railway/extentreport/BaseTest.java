@@ -15,7 +15,6 @@ public class BaseTest {
         driver = DriverFactory.createDriver(browser);
         driver.initWebDriver();
         Driver.maximizeWindow();
-        Driver.navigateTo(Constant.baseURL);
     }
 
     @AfterClass

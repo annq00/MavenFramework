@@ -3,14 +3,11 @@ package com.railway.extentreport;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-
 import com.railway.constant.Constant;
 import org.apache.commons.codec.CharEncoding;
 import org.apache.log4j.Logger;
 import com.railway.util.Helper;
-
 import java.io.File;
-
 
 public class ExtentManager {
     private static ExtentReports extent;
@@ -19,7 +16,6 @@ public class ExtentManager {
     private static final String reportFilepath = Constant.USER_DIR + Constant.FileSeparator + reportDir;
     private static final String reportFileLocation = reportFilepath + Constant.FileSeparator + reportFileName;
     private static final String HTML_REPORT_TIME_FORMAT = "EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'";
-
     private static final Logger LOGGER = Logger.getLogger(ExtentManager.class.getName());
 
     public static ExtentReports getInstance() {
@@ -32,7 +28,6 @@ public class ExtentManager {
     public static ExtentReports createInstance() {
         LOGGER.info("Init report..");
         String fileName = getReportPath(reportFilepath);
-
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
         htmlReporter.config().setTheme(Theme.STANDARD);
         htmlReporter.config().setDocumentTitle(reportFileName);

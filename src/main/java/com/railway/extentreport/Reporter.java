@@ -27,7 +27,6 @@ public class Reporter {
         ExtentTestManager.getTest().log(Status.FAIL, message);
     }
 
-
     public static void logCode(String code) {
         ExtentTestManager.getTest().log(Status.INFO, MarkupHelper.createCodeBlock(code));
     }

@@ -7,10 +7,10 @@
     <test name="RailWay">
         <parameter name="browser" value="chrome"/>
         <classes>
-<!--            <class name="Reg_01"/>-->
-<!--            <class name="Reg_02"/>-->
-<!--            <class name="Login_01"/>-->
-<!--            <class name="Login_02"/>-->
+            <class name="Reg_01"/>
+            <class name="Reg_02"/>
+            <class name="Login_01"/>
+            <class name="Login_02"/>
             <class name="BookTicket_01"/>
             <class name="MyTicket_01"/>
             <class name="MyTicket_02"/>
