@@ -20,10 +20,11 @@ Follow below instructions to set up and run the project locally
 <code>git clone https://github.com/annq00/MavenFramework.git</code>
 - Usage: 
 1. Build the project using the combination of Ctrl+F9
-2. 
+2. Check local browsers' version and compare with web drivers in /src/main/resource/driver. Update web drivers or the local browser if necessary 
+Currently this project supports chromedriver_89, edgedriver_89 and geckodriver_29(for firefox 88)
 3. Run the testcases in Regression.xml using the combination of Ctrl+f10 or Ctrl+Shift+f10 after open the xml file
 4. Check the report in the TestReport folder
 
 # Issues:
-- The framework only supports chrome and edge browser for now
+- The framework only supports firefox, chrome and edge browser for now
 - The script is not stable in parallel execution under slow internet connection
