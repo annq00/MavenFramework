@@ -20,9 +20,10 @@ Follow below instructions to set up and run the project locally
 <code>git clone https://github.com/annq00/MavenFramework.git</code>
 - Usage: 
 1. Build the project using the combination of Ctrl+F9
-2. Run the testcases in Regression.xml using the combination of Ctrl+f10 or Ctrl+Shift+f10 after open the xml file
-3. Check the report in the TestReport folder
+2. 
+3. Run the testcases in Regression.xml using the combination of Ctrl+f10 or Ctrl+Shift+f10 after open the xml file
+4. Check the report in the TestReport folder
 
 # Issues:
 - The framework only supports chrome and edge browser for now
-- The script is not stable under slow internet connection
+- The script is not stable in parallel execution under slow internet connection
