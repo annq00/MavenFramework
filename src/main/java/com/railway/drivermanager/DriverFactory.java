@@ -7,11 +7,11 @@ public class DriverFactory {
         Driver driver;
         switch (type) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver_89.exe");
+                System.setProperty("webdriver.chrome.driver", "src/main/resource/driver/chromedriver_89.exe");
                 driver = new ChromeDriver();
                 break;
             default:
-                System.setProperty("webdriver.edge.driver", "src/main/resources/drivers/msedgedriver.exe");
+                System.setProperty("webdriver.edge.driver", "src/main/resource/driver/msedgedriver_89.exe");
                 driver = new EdgeDriver();
         }
         return driver;
